@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 270" width="500" height="270">
+  <defs>
+    <radialGradient id="ballP" cx="38%" cy="30%" r="68%" fx="30%" fy="22%">
+      <stop offset="0%"   stop-color="#e0f8ff"/>
+      <stop offset="15%"  stop-color="#00d4ff"/>
+      <stop offset="45%"  stop-color="#0077ff"/>
+      <stop offset="75%"  stop-color="#0033cc"/>
+      <stop offset="100%" stop-color="#000d4d"/>
+    </radialGradient>
+    <radialGradient id="ballS" cx="38%" cy="30%" r="68%" fx="30%" fy="22%">
+      <stop offset="0%"   stop-color="#e0f8ff"/>
+      <stop offset="15%"  stop-color="#00d4ff"/>
+      <stop offset="45%"  stop-color="#0077ff"/>
+      <stop offset="75%"  stop-color="#0033cc"/>
+      <stop offset="100%" stop-color="#000d4d"/>
+    </radialGradient>
+    <radialGradient id="specP" cx="30%" cy="22%" r="36%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.90"/>
+      <stop offset="45%"  stop-color="#aaeeff" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="specS" cx="30%" cy="22%" r="36%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.90"/>
+      <stop offset="45%"  stop-color="#aaeeff" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="shadowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#0099ff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0099ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="rim" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"/>
+      <feFlood flood-color="#00ccff" flood-opacity="0.7" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="shadow"/>
+      <feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="clipP"><use href="#lP"/></clipPath>
+    <clipPath id="clipS"><use href="#lS"/></clipPath>
+  </defs>
+
+  <ellipse cx="148" cy="252" rx="108" ry="11" fill="url(#shadowGrad)"/>
+  <ellipse cx="358" cy="252" rx="108" ry="11" fill="url(#shadowGrad)"/>
+
+  <g filter="url(#rim)">
+    <path id="lP" d="M 62,220 C 52,220 44,212 44,202 L 44,52 C 44,42 52,34 62,34 L 178,34 C 226,34 262,66 262,112 C 262,158 226,188 178,188 L 110,188 L 110,202 C 110,212 102,220 92,220 Z M 110,80 L 110,142 L 172,142 C 198,142 216,130 216,112 C 216,94 198,80 172,80 Z"
+      fill="url(#ballP)" stroke="#00aaff" stroke-width="3.5" stroke-linejoin="round"/>
+    <rect x="0" y="0" width="300" height="260" fill="url(#specP)" clip-path="url(#clipP)" opacity="1"/>
+    <path d="M 62,220 C 52,220 44,212 44,202 L 44,190 C 44,200 52,208 62,208 L 92,208 C 102,208 110,200 110,190 L 110,202 C 110,212 102,220 92,220 Z" fill="rgba(0,10,80,0.35)"/>
+  </g>
+
+  <g filter="url(#rim)">
+    <path id="lS" d="M 456,100 C 456,64 424,34 374,34 L 314,34 C 276,34 248,58 248,90 C 248,122 276,144 314,144 L 374,144 C 388,144 398,152 398,162 C 398,172 388,180 374,180 L 306,180 C 292,180 282,172 280,162 L 280,158 C 280,148 272,140 262,140 L 252,140 C 242,140 234,148 234,158 L 234,162 C 234,198 266,226 314,226 L 374,226 C 420,226 456,198 456,162 C 456,126 420,106 374,106 L 314,106 C 300,106 292,98 292,90 C 292,82 300,74 314,74 L 374,74 C 388,74 396,82 396,90 L 396,94 C 396,104 404,112 414,112 L 424,112 C 434,112 442,104 442,94 L 442,90 Z"
+      fill="url(#ballS)" stroke="#00aaff" stroke-width="3.5" stroke-linejoin="round"/>
+    <rect x="220" y="0" width="280" height="260" fill="url(#specS)" clip-path="url(#clipS)" opacity="1"/>
+    <path d="M 314,226 C 266,226 234,198 234,162 L 234,175 C 234,198 264,214 314,214 L 374,214 C 420,214 456,198 456,175 L 456,162 C 456,198 420,226 374,226 Z" fill="rgba(0,10,80,0.30)"/>
+  </g>
+</svg>
