@@ -1,76 +1,112 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export default function Cursor() {
+const Cursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
-  const mx = useRef(0);
-  const my = useRef(0);
-  const rx = useRef(0);
-  const ry = useRef(0);
+  const mouseXRef = useRef(0);
+  const mouseYRef = useRef(0);
+  const ringXRef = useRef(0);
+  const ringYRef = useRef(0);
   const rafRef = useRef<number>(0);
+  const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      mx.current = e.clientX;
-      my.current = e.clientY;
-    };
-    window.addEventListener("mousemove", onMove);
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
 
-    const animate = () => {
+    if (prefersReducedMotion || isCoarsePointer) {
+      return;
+    }
+
+    setShouldRender(true);
+
+    const handleMouseMove = (event: MouseEvent) => {
+      mouseXRef.current = event.clientX;
+      mouseYRef.current = event.clientY;
+    };
+
+    const handleInteractiveEnter = () => {
+      ringRef.current?.classList.add("h-14", "w-14", "border-[var(--accent3)]");
+      ringRef.current?.classList.remove("h-9", "w-9", "border-[var(--accent)]");
+    };
+
+    const handleInteractiveLeave = () => {
+      ringRef.current?.classList.add("h-9", "w-9", "border-[var(--accent)]");
+      ringRef.current?.classList.remove("h-14", "w-14", "border-[var(--accent3)]");
+    };
+
+    const handlePointerOver = (event: MouseEvent) => {
+      if (!(event.target instanceof Element)) {
+        return;
+      }
+
+      if (event.target.closest("a, button")) {
+        handleInteractiveEnter();
+      }
+    };
+
+    const handlePointerOut = (event: MouseEvent) => {
+      if (!(event.target instanceof Element)) {
+        return;
+      }
+
+      if (event.target.closest("a, button")) {
+        handleInteractiveLeave();
+      }
+    };
+
+    const animateCursor = () => {
       if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate(${mx.current - 6}px, ${my.current - 6}px)`;
+        cursorRef.current.style.transform = `translate(${mouseXRef.current - 6}px, ${
+          mouseYRef.current - 6
+        }px)`;
       }
-      rx.current += (mx.current - rx.current) * 0.12;
-      ry.current += (my.current - ry.current) * 0.12;
+
+      ringXRef.current += (mouseXRef.current - ringXRef.current) * 0.14;
+      ringYRef.current += (mouseYRef.current - ringYRef.current) * 0.14;
+
       if (ringRef.current) {
-        ringRef.current.style.transform = `translate(${rx.current - 18}px, ${ry.current - 18}px)`;
+        ringRef.current.style.transform = `translate(${ringXRef.current - 18}px, ${
+          ringYRef.current - 18
+        }px)`;
       }
-      rafRef.current = requestAnimationFrame(animate);
-    };
-    rafRef.current = requestAnimationFrame(animate);
 
-    const onEnter = () => {
-      if (ringRef.current) { ringRef.current.style.width = "56px"; ringRef.current.style.height = "56px"; }
-    };
-    const onLeave = () => {
-      if (ringRef.current) { ringRef.current.style.width = "36px"; ringRef.current.style.height = "36px"; }
+      rafRef.current = requestAnimationFrame(animateCursor);
     };
 
-    const addListeners = () => {
-      document.querySelectorAll("a, button").forEach((el) => {
-        el.addEventListener("mouseenter", onEnter);
-        el.addEventListener("mouseleave", onLeave);
-      });
-    };
-    addListeners();
-    const observer = new MutationObserver(addListeners);
-    observer.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseover", handlePointerOver);
+    document.addEventListener("mouseout", handlePointerOut);
+    rafRef.current = requestAnimationFrame(animateCursor);
 
     return () => {
-      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseover", handlePointerOver);
+      document.removeEventListener("mouseout", handlePointerOut);
       cancelAnimationFrame(rafRef.current);
-      observer.disconnect();
     };
   }, []);
+
+  if (!shouldRender) {
+    return null;
+  }
 
   return (
     <>
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-3 h-3 rounded-full pointer-events-none z-[9999] mix-blend-difference"
-        style={{ background: "var(--accent)" }}
+        className="pointer-events-none fixed left-0 top-0 z-[9999] h-3 w-3 rounded-full bg-[var(--accent)] mix-blend-difference"
+        aria-hidden="true"
       />
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9998] mix-blend-difference"
-        style={{
-          width: 36, height: 36,
-          border: "1px solid var(--accent)",
-          transition: "width 0.3s, height 0.3s",
-        }}
+        className="pointer-events-none fixed left-0 top-0 z-[9998] h-9 w-9 rounded-full border border-[var(--accent)] mix-blend-difference transition-[height,width,border-color] duration-300"
+        aria-hidden="true"
       />
     </>
   );
-}
+};
+
+export default Cursor;

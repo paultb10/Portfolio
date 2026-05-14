@@ -10,9 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        bebas: ["var(--font-bebas)", "cursive"],
-        syne: ["var(--font-syne)", "sans-serif"],
-        mono: ["var(--font-dm-mono)", "monospace"],
+        bebas: ["Bebas Neue", "Impact", "sans-serif"],
+        syne: ["Inter", "Arial", "sans-serif"],
+        inter: ["Inter", "Arial", "sans-serif"],
+        mono: ["DM Mono", "Consolas", "monospace"],
       },
       colors: {
         accent: "#4d9fff",
@@ -22,6 +23,7 @@ const config: Config = {
           bg: "#0a0a0a",
           bg2: "#111111",
           bg3: "#181818",
+          bg4: "#202020",
           border: "#2a2a2a",
           text: "#f0ede6",
           muted: "#aaaaaa",
@@ -30,10 +32,15 @@ const config: Config = {
           bg: "#f5f3ef",
           bg2: "#ede9e3",
           bg3: "#e4e0d8",
+          bg4: "#d9d3ca",
           border: "#d0ccc4",
           text: "#111111",
           muted: "#666666",
         },
+      },
+      boxShadow: {
+        glow: "0 0 44px rgba(77, 159, 255, 0.28)",
+        panel: "0 24px 80px rgba(0, 0, 0, 0.35)",
       },
       keyframes: {
         fadeUp: {

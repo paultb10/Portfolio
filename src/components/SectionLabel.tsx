@@ -1,27 +1,27 @@
-interface SectionLabelProps {
+import clsx from "clsx";
+
+type SectionLabelProps = {
   number: string;
   label: string;
   centered?: boolean;
-}
+};
 
-export default function SectionLabel({ number, label, centered }: SectionLabelProps) {
+const SectionLabel = ({ number, label, centered = false }: SectionLabelProps) => {
   return (
     <div
-      className={`flex items-center gap-3 mb-5 font-mono text-[0.65rem] tracking-[0.25em] uppercase ${
-        centered ? "justify-center" : ""
-      }`}
-      style={{ color: "var(--accent)" }}
+      className={clsx(
+        "mb-5 flex items-center gap-3 font-mono text-[0.68rem] uppercase tracking-[0.24em] text-[var(--accent)]",
+        centered && "justify-center",
+      )}
     >
-      {number} — {label}
+      <span>{number}</span>
+      <span className="h-px w-8 bg-[var(--accent)] shadow-[0_0_12px_rgba(77,159,255,0.45)]" />
+      <span>{label}</span>
       {!centered && (
-        <span
-          className="flex-1 max-w-[60px] h-px"
-          style={{
-            background: "var(--accent)",
-            boxShadow: "0 0 8px rgba(77,159,255,0.4)",
-          }}
-        />
+        <span className="hidden h-px max-w-20 flex-1 bg-[var(--accent)] opacity-40 sm:block" />
       )}
     </div>
   );
-}
+};
+
+export default SectionLabel;

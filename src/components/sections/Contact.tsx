@@ -4,84 +4,68 @@ import { motion } from "framer-motion";
 import FadeInView from "@/components/FadeInView";
 import SectionLabel from "@/components/SectionLabel";
 
-const socials = [
-  { label: "GitHub", href: "https://github.com/paultb10" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/paul-sirbu-24a6a9255/" },
-  { label: "+40 722 850 830", href: "tel:+40722850830" },
+type ContactLink = {
+  label: string;
+  href: string;
+  detail: string;
+};
+
+const contactLinks: ContactLink[] = [
+  { label: "GitHub", href: "https://github.com/paultb10", detail: "Projects and code" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/paul-sirbu-24a6a9255/",
+    detail: "Professional profile",
+  },
+  { label: "Phone", href: "tel:+40722850830", detail: "+40 722 850 830" },
 ];
 
-export default function Contact() {
+const Contact = () => {
   return (
-    <section id="contact" className="px-12 py-[120px] text-center relative overflow-hidden">
-      {/* ghost bg text */}
-      <span
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 font-bebas pointer-events-none whitespace-nowrap leading-none"
-        style={{
-          fontSize: "clamp(80px, 15vw, 220px)",
-          color: "transparent",
-          WebkitTextStroke: "1px #1a1a1a",
-        }}
-      >
-        CONTACT
-      </span>
+    <section id="contact" className="relative overflow-hidden bg-[var(--bg)] px-4 py-24 sm:px-6 lg:px-10 lg:py-32">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--border)] to-transparent" />
+      <div className="absolute left-1/2 top-12 h-72 w-[min(42rem,90vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(77,159,255,0.16),transparent_68%)] blur-2xl" />
 
-      <FadeInView>
+      <FadeInView className="relative z-10 mx-auto max-w-5xl text-center">
         <SectionLabel number="05" label="Contact" centered />
-        <h2
-          className="font-bebas leading-none mb-6"
-          style={{
-            fontSize: "clamp(48px, 7vw, 100px)",
-            letterSpacing: "-0.01em",
-            textShadow: "0 4px 32px rgba(0,0,0,0.7)",
-          }}
-        >
-          Let&apos;s Work<br />Together
+        <h2 className="font-bebas text-[clamp(3.8rem,9vw,8.5rem)] leading-[0.86] tracking-normal text-[var(--text)]">
+          Let&apos;s build something people remember.
         </h2>
-
-        <p
-          className="text-[1rem] leading-[1.75] max-w-[480px] mx-auto mb-8 relative z-10"
-          style={{ color: "#b0ada6" }}
-        >
-          Looking for a passionate frontend developer &amp; UI/UX designer? I&apos;m open
-          to new opportunities, freelance projects, and collaborations.
+        <p className="mx-auto mt-7 max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg">
+          I am interested in frontend, UI/UX, and full-stack roles where polished
+          interfaces and reliable product thinking matter.
         </p>
 
         <motion.a
           href="mailto:sirbupaul05@gmail.com"
-          className="font-bebas inline-block mb-12 no-underline relative z-10"
-          style={{
-            fontSize: "clamp(28px, 3.5vw, 52px)",
-            letterSpacing: "0.02em",
-            color: "var(--text)",
-          }}
-          whileHover={{
-            color: "var(--accent)",
-            textShadow: "0 0 40px rgba(77,159,255,0.4)",
-          }}
+          whileHover={{ y: -4 }}
           transition={{ duration: 0.2 }}
+          className="mx-auto mt-10 inline-flex max-w-full items-center justify-center rounded-xl border border-[var(--accent)] bg-[var(--accent)] px-6 py-4 text-center font-bebas text-[clamp(1.9rem,5vw,4.6rem)] leading-none tracking-normal text-[#050505] shadow-glow transition duration-200 hover:bg-[var(--accent3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--bg)]"
+          aria-label="Send email to Paul Sirbu"
         >
-          sirbupaul05@gmail.com
+          <span className="break-all sm:break-normal">sirbupaul05@gmail.com</span>
         </motion.a>
 
-        <div className="flex justify-center gap-4 relative z-10">
-          {socials.map((s) => (
-            <motion.a
-              key={s.label}
-              href={s.href}
-              target={s.href.startsWith("http") ? "_blank" : undefined}
-              rel="noreferrer"
-              className="font-mono text-[0.7rem] tracking-[0.15em] uppercase px-5 py-2.5 border no-underline transition-all duration-200"
-              style={{ borderColor: "var(--border)", color: "var(--muted)" }}
-              whileHover={{
-                color: "var(--text)",
-                borderColor: "var(--text)",
-              }}
+        <div className="mt-12 grid gap-3 sm:grid-cols-3">
+          {contactLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+              rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="rounded-xl border border-[var(--border)] bg-[var(--bg2)] px-5 py-4 text-left transition duration-200 hover:-translate-y-1 hover:border-[var(--accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--bg)]"
+              aria-label={`Open ${link.label}`}
             >
-              {s.label}
-            </motion.a>
+              <span className="block font-mono text-[0.68rem] uppercase tracking-[0.2em] text-[var(--accent)]">
+                {link.label}
+              </span>
+              <span className="mt-2 block text-sm leading-6 text-[var(--muted)]">{link.detail}</span>
+            </a>
           ))}
         </div>
       </FadeInView>
     </section>
   );
-}
+};
+
+export default Contact;

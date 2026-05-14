@@ -1,37 +1,44 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
-interface FadeInViewProps {
+type FadeInViewProps = {
   children: ReactNode;
   delay?: number;
   className?: string;
   direction?: "up" | "left" | "right";
-}
+};
 
-export default function FadeInView({
+const getInitialMotion = (direction: FadeInViewProps["direction"]) => {
+  if (direction === "left") {
+    return { opacity: 0, x: -32 };
+  }
+
+  if (direction === "right") {
+    return { opacity: 0, x: 32 };
+  }
+
+  return { opacity: 0, y: 32 };
+};
+
+const FadeInView = ({
   children,
   delay = 0,
   className = "",
   direction = "up",
-}: FadeInViewProps) {
-  const initial =
-    direction === "up"
-      ? { opacity: 0, y: 40 }
-      : direction === "left"
-      ? { opacity: 0, x: -40 }
-      : { opacity: 0, x: 40 };
-
+}: FadeInViewProps) => {
   return (
     <motion.div
-      initial={initial}
-      whileInView={{ opacity: 1, y: 0, x: 0 }}
+      initial={getInitialMotion(direction)}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, delay, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
     </motion.div>
   );
-}
+};
+
+export default FadeInView;

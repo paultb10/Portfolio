@@ -7,9 +7,9 @@ import Projects from "@/components/sections/Projects";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/Footer";
 
-export default function Home() {
+const Home = () => {
   return (
-    <main>
+    <main className="min-h-screen overflow-hidden bg-[var(--bg)] text-[var(--text)]">
       <Navbar />
       <Hero />
       <About />
@@ -20,4 +20,6 @@ export default function Home() {
       <Footer />
     </main>
   );
-}
+};
+
+export default Home;
