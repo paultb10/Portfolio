@@ -6,7 +6,7 @@ import SectionLabel from "@/components/SectionLabel";
 
 const socials = [
   { label: "GitHub", href: "https://github.com/paultb10" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/paul-sirbu" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/paul-sirbu-24a6a9255/" },
   { label: "+40 722 850 830", href: "tel:+40722850830" },
 ];
 
