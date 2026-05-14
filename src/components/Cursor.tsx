@@ -20,6 +20,11 @@ const Cursor = () => {
       return;
     }
 
+    mouseXRef.current = window.innerWidth / 2;
+    mouseYRef.current = window.innerHeight / 2;
+    ringXRef.current = mouseXRef.current;
+    ringYRef.current = mouseYRef.current;
+    document.body.classList.add("custom-cursor-active");
     setShouldRender(true);
 
     const handleMouseMove = (event: MouseEvent) => {
@@ -82,6 +87,7 @@ const Cursor = () => {
     rafRef.current = requestAnimationFrame(animateCursor);
 
     return () => {
+      document.body.classList.remove("custom-cursor-active");
       window.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseover", handlePointerOver);
       document.removeEventListener("mouseout", handlePointerOut);

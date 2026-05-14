@@ -46,7 +46,7 @@ const skillGroups: SkillGroup[] = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="bg-[var(--bg2)] px-4 py-24 sm:px-6 lg:px-10 lg:py-32">
+    <section id="skills" className="scroll-mt-24 bg-[var(--bg2)] px-4 py-24 sm:px-6 lg:px-10 lg:py-32">
       <div className="mx-auto max-w-7xl">
         <FadeInView>
           <SectionLabel number="02" label="Skills" />

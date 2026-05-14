@@ -22,7 +22,7 @@ const contactLinks: ContactLink[] = [
 
 const Contact = () => {
   return (
-    <section id="contact" className="relative overflow-hidden bg-[var(--bg)] px-4 py-24 sm:px-6 lg:px-10 lg:py-32">
+    <section id="contact" className="relative scroll-mt-24 overflow-hidden bg-[var(--bg)] px-4 py-24 sm:px-6 lg:px-10 lg:py-32">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--border)] to-transparent" />
       <div className="absolute left-1/2 top-12 h-72 w-[min(42rem,90vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(77,159,255,0.16),transparent_68%)] blur-2xl" />
 
@@ -40,10 +40,15 @@ const Contact = () => {
           href="mailto:sirbupaul05@gmail.com"
           whileHover={{ y: -4 }}
           transition={{ duration: 0.2 }}
-          className="mx-auto mt-10 inline-flex max-w-full items-center justify-center rounded-xl border border-[var(--accent)] bg-[var(--accent)] px-6 py-4 text-center font-bebas text-[clamp(1.9rem,5vw,4.6rem)] leading-none tracking-normal text-[#050505] shadow-glow transition duration-200 hover:bg-[var(--accent3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--bg)]"
+          className="mx-auto mt-10 inline-flex max-w-full flex-col items-center justify-center gap-2 rounded-xl border border-[var(--accent)] bg-[var(--accent)] px-6 py-4 text-center text-[#050505] shadow-glow transition duration-200 hover:bg-[var(--accent3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--bg)] sm:px-8 sm:py-5"
           aria-label="Send email to Paul Sirbu"
         >
-          <span className="break-all sm:break-normal">sirbupaul05@gmail.com</span>
+          <span className="font-mono text-[0.68rem] font-bold uppercase tracking-[0.22em]">
+            Email me
+          </span>
+          <span className="break-all font-bebas text-[clamp(1.7rem,4vw,3.6rem)] leading-none tracking-normal sm:break-normal">
+            sirbupaul05@gmail.com
+          </span>
         </motion.a>
 
         <div className="mt-12 grid gap-3 sm:grid-cols-3">

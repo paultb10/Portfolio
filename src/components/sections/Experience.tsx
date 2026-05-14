@@ -48,7 +48,7 @@ const experiences: ExperienceItem[] = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="bg-[var(--bg)] px-4 py-24 sm:px-6 lg:px-10 lg:py-32">
+    <section id="experience" className="scroll-mt-24 bg-[var(--bg)] px-4 py-24 sm:px-6 lg:px-10 lg:py-32">
       <div className="mx-auto max-w-7xl">
         <FadeInView>
           <SectionLabel number="03" label="Experience" />

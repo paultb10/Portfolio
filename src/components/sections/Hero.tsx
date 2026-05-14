@@ -37,7 +37,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen overflow-hidden bg-[var(--bg)] px-4 pb-12 pt-24 sm:px-6 lg:px-10 lg:pb-14"
+      className="relative min-h-screen scroll-mt-24 overflow-hidden bg-[var(--bg)] px-4 pb-12 pt-24 sm:px-6 lg:px-10 lg:pb-14"
     >
       <div
         className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(77,159,255,0.18),transparent_28%),radial-gradient(circle_at_82%_8%,rgba(255,77,109,0.14),transparent_24%),linear-gradient(135deg,var(--bg)_0%,var(--bg2)_54%,var(--bg)_100%)]"
