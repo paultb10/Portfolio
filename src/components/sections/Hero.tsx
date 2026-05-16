@@ -100,7 +100,7 @@ const Hero = () => {
               <span aria-hidden="true">-&gt;</span>
             </a>
             <a
-              href="/sirbu-paul-dan-cv.pdf"
+              href="/Sirbu%20Paul%20Dan.pdf"
               download="Sirbu-Paul-Dan-CV.pdf"
               className="inline-flex min-h-12 items-center justify-center gap-3 rounded-md border border-[var(--border)] bg-[var(--bg2)] px-6 py-3 text-center font-syne text-sm font-semibold uppercase tracking-[0.08em] text-[var(--text)] transition duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--bg)]"
               aria-label="Download Paul Sirbu CV"
