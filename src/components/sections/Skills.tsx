@@ -28,7 +28,7 @@ const skillGroups: SkillGroup[] = [
     code: "AI",
     title: "AI workflow",
     summary: "Practical automation and prompt-driven product experiments.",
-    tags: ["Generative AI", "OpenAI API", "Prompt engineering", "LLM integration", "Custom GPTs"],
+    tags: ["Generative AI", "OpenAI API", "Prompt engineering", "LLM integration", "Custom GPTs", "n8n"],
   },
   {
     code: "BE",

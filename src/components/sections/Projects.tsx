@@ -53,9 +53,22 @@ const projects: Project[] = [
     outcomes: ["Role-based admin and user flows", "Payments and invoices", "Inventory and export automation"],
     stack: ["React", "Spring Boot", "PostgreSQL", "Stripe API", "WebSockets"],
     link: "https://github.com/LAB-PS-2024-30236/Paul_Sirbu/tree/main",
-    spanClass: "lg:col-span-12",
+    spanClass: "lg:col-span-7",
     visualClass:
       "bg-[radial-gradient(circle_at_18%_25%,rgba(255,77,109,0.25),transparent_30%),radial-gradient(circle_at_82%_22%,rgba(77,159,255,0.2),transparent_34%),linear-gradient(135deg,var(--bg3),var(--bg2))]",
+  },
+  {
+    number: "04",
+    tag: "AI automation workflow",
+    title: "AI Store Chatbot Workflow",
+    description:
+        "An n8n workflow powering a retail chatbot that understands natural-language questions about stock and pricing, extracts intent with OpenAI, and queries a SQL Server database — all while remembering context across messages.",
+    outcomes: ["OpenAI-driven intent extraction", "Conversational memory across turns", "Parameterized SQL for stock and price lookups"],
+    stack: ["n8n", "OpenAI API", "Microsoft SQL Server", "Webhooks", "JSON"],
+    link: "https://github.com/paultb10/AI-Chatbot-Workflow",
+    spanClass: "lg:col-span-5",
+    visualClass:
+        "bg-[radial-gradient(circle_at_25%_20%,rgba(159,77,255,0.28),transparent_32%),linear-gradient(135deg,var(--bg4),var(--bg2))]",
   },
 ];
 
